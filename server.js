@@ -109,7 +109,7 @@ app.get('/api/v1/cards', async (req, res) => {
       cards: result.rows
     });
   } catch (err) {
-    console.error(err);
+    console.error('DB query error:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
