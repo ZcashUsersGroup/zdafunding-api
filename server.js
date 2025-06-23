@@ -135,6 +135,25 @@ app.get('/api/v1/cards/:id', async (req, res) => {
 });
 
 
+app.get('/api/v1/funding-summary', async (req, res) => {
+  res.set('Cache-Control', 'public, max-age=30');
+  try {
+    const result = await pool.query(`
+      SELECT
+        SUM(funding_earned)::text AS total_earned,
+        SUM(funding_spent)::text AS total_spent,
+        SUM(funding_requested)::text AS total_requested,
+        SUM(funding_received)::text AS total_received,
+        SUM(funding_available)::text AS total_available
+      FROM cards
+      WHERE visibility = 'PUBLIC'
+    `);
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Summary query error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 app.listen(PORT, () => {
