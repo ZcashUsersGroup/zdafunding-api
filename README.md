@@ -135,6 +135,42 @@ Returns a single project card by ID (UUID).
 https://zdafunding-api.onrender.com/api/v1/cards/4c999973-8929-4f51-8964-21f2677935e4
 ```
 
+
+---
+
+✅ One step at a time.
+
+➡ **Here’s exactly what you should add to `README.md` to showcase your new funding summary endpoint:**
+
+---
+
+### 📌 `GET /funding-summary`
+
+Returns aggregate funding statistics across all public project cards.
+
+✅ Example:
+
+```
+https://zdafunding-api.onrender.com/api/v1/funding-summary
+```
+
+✅ Response:
+
+```json
+{
+  "total_earned": "XX.XXXXXXXX",
+  "total_spent": "XX.XXXXXXXX",
+  "total_requested": "XX.XXXXXXXX",
+  "total_received": "XX.XXXXXXXX",
+  "total_available": "XX.XXXXXXXX"
+}
+```
+
+✅ Notes:
+
+* All values are strings with 8 decimal places
+* Only `PUBLIC` cards are included
+
 ---
 
 ## 🛡 Rate limit
