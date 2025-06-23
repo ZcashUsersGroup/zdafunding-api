@@ -76,8 +76,52 @@ Returns a list of project cards.
 
 ✅ Example:
 
+---
+
+#### 1️⃣ All public cards (default, no query params needed)
+
 ```
-https://zdafunding-api.onrender.com/api/v1/cards?priority=HIGH&sort_by=priority&sort_dir=asc&page=1&per_page=5
+https://zdafunding-api.onrender.com/api/v1/cards
+```
+
+---
+
+#### 2️⃣ Limit 10 (default behavior is per\_page=10)
+
+```
+https://zdafunding-api.onrender.com/api/v1/cards?per_page=10
+```
+
+---
+
+#### 3️⃣ Pagination with offset (page 2, per\_page 10 → offset 10)
+
+```
+https://zdafunding-api.onrender.com/api/v1/cards?page=2&per_page=10
+```
+
+---
+
+#### 4️⃣ Order by last\_updated descending (default)
+
+```
+https://zdafunding-api.onrender.com/api/v1/cards?sort_by=last_updated&sort_dir=desc
+```
+
+---
+
+#### 5️⃣ Filter by priority HIGH
+
+```
+https://zdafunding-api.onrender.com/api/v1/cards?priority=HIGH
+```
+
+---
+
+#### 6️⃣ Filter by priority HIGH and status IN PROGRESS
+
+```
+https://zdafunding-api.onrender.com/api/v1/cards?priority=HIGH&status=IN%20PROGRESS
 ```
 
 ---
