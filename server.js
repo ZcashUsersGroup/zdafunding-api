@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 
 // Replace this with your actual Supabase connection string
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:IhSc6kLQ3d0bJ5XR@db.shxxgatskiyiqypapjcd.supabase.co:5432/postgres'
+  connectionString: process.env.DATABASE_URL
 });
 
 pool.connect()
