@@ -4,8 +4,7 @@ Public-facing API for ZDA funding wallet project cards and exchange rate data.
 
 ## 🌐 Base URL
 ```
-
-[https://zdafunding-api.onrender.com/api/v1](https://zdafunding-api.onrender.com/api/v1)
+https://zdafunding-api.onrender.com/api/v1
 
 ```
 
@@ -17,8 +16,7 @@ Public-facing API for ZDA funding wallet project cards and exchange rate data.
 Returns the current (mocked) ZEC → USD exchange rate.
 ✅ Example:
 ```
-
-/exchange-rate
+https://zdafunding-api.onrender.com/api/v1/exchange-rate
 
 ````
 ✅ Response:
@@ -32,6 +30,10 @@ Returns the current (mocked) ZEC → USD exchange rate.
 ---
 
 ### `GET /cards`
+
+```
+https://zdafunding-api.onrender.com/api/v1/cards
+```
 
 Returns a list of project cards.
 
@@ -75,7 +77,7 @@ Returns a list of project cards.
 ✅ Example:
 
 ```
-/cards?priority=HIGH&sort_by=priority&sort_dir=asc&page=1&per_page=5
+https://zdafunding-api.onrender.com/api/v1/cards?priority=HIGH&sort_by=priority&sort_dir=asc&page=1&per_page=5
 ```
 
 ---
@@ -86,7 +88,7 @@ Returns a single project card by ID (UUID).
 ✅ Example:
 
 ```
-/cards/4c999973-8929-4f51-8964-21f2677935e4
+https://zdafunding-api.onrender.com/api/v1/cards/4c999973-8929-4f51-8964-21f2677935e4
 ```
 
 ---
