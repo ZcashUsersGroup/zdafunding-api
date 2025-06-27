@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
@@ -100,13 +102,47 @@ app.get('/api/v1/cards', async (req, res) => {
       [...values, limit, offset]
     );
 
+    const stageFundingResult = await pool.query(`
+      SELECT card_id, stage, funding_requested
+      FROM card_stage_funding
+    `);
+
+    const stageFundingMap = {};
+    for (const row of stageFundingResult.rows) {
+      if (!stageFundingMap[row.card_id]) {
+        stageFundingMap[row.card_id] = [];
+      }
+      stageFundingMap[row.card_id].push({
+        stage: row.stage,
+        funding_requested: row.funding_requested,
+        currency: row.currency || 'ZEC',
+        note: row.note || null
+      });
+
+    }
+
+    // Attach stage_funding and total_stage_funding_requested to each card
+  const cardsWithFunding = result.rows.map(card => {
+  const stageEntries = stageFundingMap[card.id] || [];
+  const totalRequested = stageEntries.reduce(
+    (sum, s) => sum + parseFloat(s.funding_requested || 0), 0
+  ).toFixed(8);
+
+  return {
+    ...card,
+    stage_funding: stageEntries,
+    total_stage_funding_requested: totalRequested
+  };
+});
+
+
     res.json({
       pagination: {
         current_page: parseInt(page, 10),
         per_page: limit,
         total_pages: totalPages
       },
-      cards: result.rows
+      cards: cardsWithFunding
     });
   } catch (err) {
     console.error('DB query error:', err);
